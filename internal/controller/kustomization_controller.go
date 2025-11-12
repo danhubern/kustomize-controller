@@ -827,6 +827,7 @@ func (r *KustomizationReconciler) apply(ctx context.Context,
 	applyOpts.Force = obj.Spec.Force
 	applyOpts.ExclusionSelector = map[string]string{
 		fmt.Sprintf("%s/reconcile", kustomizev1.GroupVersion.Group): kustomizev1.DisabledValue,
+		fmt.Sprintf("%s/decrypt", kustomizev1.GroupVersion.Group):   kustomizev1.DisabledValue,
 		fmt.Sprintf("%s/ssa", kustomizev1.GroupVersion.Group):       kustomizev1.IgnoreValue,
 	}
 	applyOpts.IfNotPresentSelector = map[string]string{
