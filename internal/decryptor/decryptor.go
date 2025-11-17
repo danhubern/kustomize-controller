@@ -189,10 +189,8 @@ func New(client client.Client, kustomization *kustomizev1.Kustomization, opts ..
 
 // IsDecryptionDisabled checks if the given object has the decrypt: disabled annotation set
 func IsDecryptionDisabled(annotations map[string]string) bool {
-	if annotations != nil && annotations[fmt.Sprintf("%s/decrypt", kustomizev1.GroupVersion.Group)] == kustomizev1.DisabledValue {
-		return true
-	}
-	return false
+	return annotations != nil &&
+		strings.EqualFold(annotations[fmt.Sprintf("%s/decrypt", kustomizev1.GroupVersion.Group)], kustomizev1.DisabledValue)
 }
 
 // IsEncryptedSecret checks if the given object is a Kubernetes Secret encrypted
